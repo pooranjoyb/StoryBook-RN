@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "auth-rn",
-    "slug": "auth-rn",
+    "name": "StoryBook",
+    "slug": "Storybook",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
