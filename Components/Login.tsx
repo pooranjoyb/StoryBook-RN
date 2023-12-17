@@ -4,9 +4,13 @@ import { account, ID } from '../utils/appwrite/service';
 import { showMessage } from "react-native-flash-message";
 import FlashMessage from 'react-native-flash-message';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../utils/redux/userSlice';
 
 const Login = () => {
+    const dispatch = useDispatch();
     const navigation = useNavigation();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -19,7 +23,11 @@ const Login = () => {
                 type: "success",
             });
             const newEmail = email;
-            navigation.navigate('Profile', { username: newEmail });
+
+            navigation.navigate('StoriesList' as never);
+
+            const user = { username: email, isAuthenticated: true };
+            dispatch(setUser(user));
 
         } catch (err) {
             showMessage({
