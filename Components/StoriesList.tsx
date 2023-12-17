@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../utils/appwrite/service';
 
@@ -43,7 +43,7 @@ const StoriesList = () => {
 
     return (
         <>
-            <View style={{display: "flex", alignItems: 'center', height: '90vh', justifyContent: 'space-between'}}>
+            <View style={styles.container}>
                 {
                     stories.length === 0 ? (
                         <Text>No story available</Text>
@@ -54,17 +54,26 @@ const StoriesList = () => {
                             renderItem={({ item }) => (
                                 <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
                                     <View style={{ padding: 16, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-                                        <Text>{item.title}</Text>
+                                        <Text style={{
+                                            fontSize: 18
+                                        }}>{item.title}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
                         />
                     )
                 }
-            <Footer />
+                <Footer />
             </View>
         </>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        display: "flex", alignItems: 'center', height: 750, justifyContent: 'space-between'
+    }
+
+});
 
 export default StoriesList;

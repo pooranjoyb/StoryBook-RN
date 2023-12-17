@@ -47,11 +47,11 @@ const Story = () => {
                     <Text>No story available</Text>
                 ) : (
                     <>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{story.title}</Text>
-                        <Text style={{ fontSize: 14, fontWeight: 'bold', paddingTop: 20 }}>Author : {story.author}</Text>
+                        <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{story.title}</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', paddingTop: 20 }}>Author : {story.author}</Text>
 
-                        <Text style={{ paddingTop: 15 }}>{story.data}</Text>
-                        <Text style={{ fontWeight: 'bold', paddingTop: 20 }}>MORAL : {story.moral}</Text>
+                        <Text style={{ paddingTop: 15, fontSize:17 }}>{story.data}</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize:20, paddingTop: 20 }}>MORAL : {story.moral}</Text>
                     </>
                 )
             }
