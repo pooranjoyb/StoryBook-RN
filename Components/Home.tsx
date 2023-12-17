@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../utils/redux/userSlice';
 
 const Home = () => {
+    const user = useSelector(selectUser);
     const navigation = useNavigation();
 
     const handleSignupPress = () => {
@@ -10,15 +13,19 @@ const Home = () => {
     };
 
     const handleLoginPress = () => {
-        navigation.navigate('Login' as never);
+        if (user && user.isAuthenticated) {
+            navigation.navigate('StoriesList' as never);
+          } else {
+            navigation.navigate('Login' as never);
+          }
     };
 
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.title}>Auth-RN</Text>
+                <Text style={styles.title}>StoryBook-RN</Text>
                 <Text style={styles.description}>
-                    Welcome to Auth-RN, an app for practicing appwrite authentication, routing, and other features in React Native.
+                Welcome to StoryBook - RN, an app where users can explore and read various stories. Enjoy a collection of interesting and captivating tales right at your fingertips.
                 </Text>
                 <View style={styles.box}>
                     <Pressable style={styles.button} onPress={handleSignupPress}>
