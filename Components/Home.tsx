@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../utils/redux/userSlice';
@@ -15,17 +15,18 @@ const Home = () => {
     const handleLoginPress = () => {
         if (user && user.isAuthenticated) {
             navigation.navigate('StoriesList' as never);
-          } else {
+        } else {
             navigation.navigate('Login' as never);
-          }
+        }
     };
 
     return (
         <View style={styles.container}>
             <View style={styles.content}>
+                <Image source={require('../assets/img/kid.jpg')} style={styles.image} />
                 <Text style={styles.title}>StoryBook-RN</Text>
                 <Text style={styles.description}>
-                Welcome to StoryBook - RN, an app where users can explore and read various stories. Enjoy a collection of interesting and captivating tales right at your fingertips.
+                    Welcome to StoryBook - RN, an app where users can explore and read various stories. Enjoy a collection of interesting and captivating tales right at your fingertips.
                 </Text>
                 <View style={styles.box}>
                     <Pressable style={styles.button} onPress={handleSignupPress}>
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        color: '#000', // Black text color
+        color: '#000', 
         marginBottom: 16,
     },
     description: {
@@ -75,11 +76,18 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 2,
         alignItems: 'center',
-      },
+    },
     buttonText: {
         fontSize: 18,
-        color: '#fff', // White text color
+        color: '#fff',
     },
+
+    image: {
+        width: 200,
+        height: 200,
+        resizeMode: 'cover',
+        borderRadius: 10,
+    }
 });
 
 export default Home;

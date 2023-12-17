@@ -22,7 +22,6 @@ const Login = () => {
                 message: "Login Success!",
                 type: "success",
             });
-            const newEmail = email;
 
             navigation.navigate('StoriesList' as never);
 

@@ -3,6 +3,8 @@ import { ActivityIndicator, View, Text, FlatList, TouchableOpacity } from 'react
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../utils/appwrite/service';
 
+import Footer from './Footer';
+
 const StoriesList = () => {
     const navigation = useNavigation();
     const [stories, setStories] = useState([]);
@@ -25,39 +27,43 @@ const StoriesList = () => {
 
     if (loading) {
         return (
-          <View style={{flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',}}>
-            <ActivityIndicator size="large" color="#0000ff" />
-          </View>
+            <View style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
         );
-      }
+    }
 
     const handleStoryPress = (storyId: string) => {
         navigation.navigate('Story', { storyId });
     };
 
     return (
-        <View>
-            {
-                stories.length === 0 ? (
-                    <Text>No story available</Text>
-                ) : (
-
-                    <FlatList
-                        data={stories}
-                        keyExtractor={(item) => item.$id}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
-                                <View style={{ padding: 16, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-                                    <Text>{item.title}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        )}
-                    />
-                )
-            }
-        </View>
+        <>
+            <View style={{display: "flex", alignItems: 'center', height: '90vh', justifyContent: 'space-between'}}>
+                {
+                    stories.length === 0 ? (
+                        <Text>No story available</Text>
+                    ) : (
+                        <FlatList
+                            data={stories}
+                            keyExtractor={(item) => item.$id}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
+                                    <View style={{ padding: 16, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+                                        <Text>{item.title}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    )
+                }
+            <Footer />
+            </View>
+        </>
     );
 };
 
