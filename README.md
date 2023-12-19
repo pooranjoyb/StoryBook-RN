@@ -1,7 +1,7 @@
 # StoryBook - RN
 
-![React Native](https://img.shields.io/badge/React_Native-0.65.1-blue?style=flat-square&logo=react)
-![Appwrite](https://img.shields.io/badge/Appwrite-0.11.1-blue?style=flat-square&logo=appwrite)
+![React Native](https://img.shields.io/badge/React_Native-0.72.6-blue?style=flat-square&logo=react)
+![Appwrite](https://img.shields.io/badge/Appwrite-13.0.1-blue?style=flat-square&logo=appwrite)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 A React Native project integrating Appwrite for authentication, database, and other features to fetch stories for users.
