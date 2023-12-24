@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, View, Text } from 'react-native';
+import { ActivityIndicator, View, Text, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { db } from '../utils/appwrite/service';
 
@@ -47,11 +47,13 @@ const Story = () => {
                     <Text>No story available</Text>
                 ) : (
                     <>
+                     <ScrollView style={{height: '100%', width: '100%'}}>
                         <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{story.title}</Text>
                         <Text style={{ fontSize: 20, fontWeight: 'bold', paddingTop: 20 }}>Author : {story.author}</Text>
 
                         <Text style={{ paddingTop: 15, fontSize:17 }}>{story.data}</Text>
                         <Text style={{ fontWeight: 'bold', fontSize:20, paddingTop: 20 }}>MORAL : {story.moral}</Text>
+                        </ScrollView>
                     </>
                 )
             }
