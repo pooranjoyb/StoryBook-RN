@@ -24,11 +24,16 @@ const Profile: React.FC<Props> = ({ route }) => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    await account.deleteSession('current');
-    
-    const user = { username: '', isAuthenticated: false };
-    dispatch(setUser(user))
-    navigation.navigate('Home' as never);
+    try {
+      await account.deleteSession('current');
+      const user = { username: '', isAuthenticated: false };
+      dispatch(setUser(user))
+      navigation.navigate('Home' as never);
+      
+    } catch (err) {
+
+      console.error(err)
+    }
   }
 
   return (
