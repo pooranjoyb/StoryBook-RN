@@ -24,8 +24,7 @@
     "react-native-linear-gradient": "^2.8.3",
     "react-native-web": "^0.19.9",
     "react-redux": "^9.0.4",
-    "redux": "^5.0.0",
-    "redux-persist": "^6.0.0"
+    "redux": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
