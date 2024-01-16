@@ -1,0 +1,334 @@
+import React from 'react';
+import { View, Linking, Text, Pressable, StyleSheet, Image,TextInput} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../utils/redux/userSlice';
+
+const Home = () => {
+    const user = useSelector(selectUser);
+    const navigation = useNavigation();
+
+    const handleSignupPress = () => {
+        navigation.navigate('Signup' as never);
+    };
+
+    const handleLoginPress = () => {
+        if (user && user.isAuthenticated) {
+            navigation.navigate('StoriesList' as never);
+        } else {
+            navigation.navigate('Login' as never);
+        }
+    };
+
+    const handleFacebookPress = () => {
+        
+        Linking.openURL('https://www.facebook.com');
+    };
+
+    const handleInstagramPress = () => {
+       
+        Linking.openURL('https://www.instagram.com');
+    };
+
+    const handleGitHubPress = () => {
+      
+        Linking.openURL('https://www.github.com');
+    };
+
+    const handleLinkedInPress = () => {
+   
+        Linking.openURL('https://www.linkedin.com');
+    };
+
+    const handleContactUsPress = () => {
+       
+        console.log('Contact Us button pressed');
+    };
+
+
+    return (
+        // <View style={styles.container}>
+        //     <View style={styles.content}>
+        //         <Image source={require('../assets/img/kid.jpg')} style={styles.image} />
+        //         <Text style={styles.title}>StoryBook-RN</Text>
+        //         <Text style={styles.description}>
+        //             Welcome to StoryBook - RN, an app where users can explore and read various stories. Enjoy a collection of interesting and captivating tales right at your fingertips.
+        //         </Text>
+        //         <Text style={styles.tag}>
+        //             Developed by  
+        //             <Text style={{ color: '#3498db' }}
+        //                 onPress={() => Linking.openURL('http://github.com/pooranjoyb')}>
+        //                  &nbsp;Pooranjoy Bhattacharya
+        //             </Text>
+        //         </Text>
+        //         <Pressable style={styles.button} onPress={handleSignupPress}>
+        //             <Text style={styles.buttonText}>Signup</Text>
+        //         </Pressable>
+        //         <Pressable style={styles.button} onPress={handleLoginPress}>
+        //             <Text style={styles.buttonText}>Login</Text>
+        //         </Pressable>
+        //     </View>
+        // </View>
+    
+        <View style={styles.container}>
+            <View style={styles.header}>
+        <Text style={styles.headerTitle}>StoryBook-RN</Text>
+    </View>
+        <View style={styles.contentContainer}>
+            <View style={styles.leftContainer}>
+                {/* <Image source={require('../assets/img/kid.jpg')} style={styles.image} /> */}
+                <Text style={styles.title}>StoryBook-RN</Text>
+                <Text style={styles.description}>
+                    Welcome to StoryBook - RN, an app where users can explore and read various stories. Enjoy a collection of interesting and captivating tales right at your fingertips.
+                </Text>
+                <Text style={styles.tag}>
+                    Developed by  
+                    <Text style={{ color: '#e74c3c', fontWeight: 'bold' }}
+                        onPress={() => Linking.openURL('http://github.com/pooranjoyb')}>
+                         &nbsp;Pooranjoy Bhattacharya
+                    </Text>
+                </Text>
+            </View>
+            <View style={styles.rightContainer}>
+                {/* Login Form */}
+                <View style={styles.loginBox}>
+                    <View style={styles.loginForm}>
+                        {/* Email and Password Input */}
+                        <Text style={styles.txt}>Email Address</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Email"
+                            keyboardType="email-address"
+                        />
+                        <Text style={styles.txt}>Password</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Password"
+                            secureTextEntry
+                        />
+                        {/* Login Button */}
+                        <Pressable style={styles.button} onPress={handleLoginPress}>
+                            <Text style={styles.buttonText}>Login</Text>
+                        </Pressable>
+                    </View>
+                    {/* Register Box */}
+                    <View style={styles.registerContainer}>
+                        <Text style={styles.dontHaveAccountText}>Don't have an account?</Text>
+                        <Pressable style={styles.registerButton} onPress={handleSignupPress}>
+                            <Text style={styles.registerButtonText}>Register</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </View>
+    
+        </View>
+          {/* Footer Section */}
+          <View style={styles.footer}>
+                            {/* Left Icons */}
+                            <View style={styles.socialIcons}>
+                                <Pressable onPress={handleFacebookPress}>
+                                    <Text style={{color: "#87CEEB"}}>Facebook</Text> 
+                                </Pressable>
+                                <Pressable onPress={handleInstagramPress}>
+                                    <Text style={{color: "#87CEEB"}}>Instagram</Text> 
+                                </Pressable>
+                                <Pressable onPress={handleGitHubPress}>
+                                    <Text style={{color: "#87CEEB"}}>GitHub</Text> 
+                                </Pressable>
+                                <Pressable onPress={handleLinkedInPress}>
+                                    <Text style={{color: "#87CEEB"}}>LinkedIn</Text>
+                                </Pressable>
+                            </View>
+                            {/* Contact Us Button */}
+                            <Pressable style={styles.contactUsButton} onPress={handleContactUsPress}>
+                                <Text style={styles.contactUsButtonText}>Contact Us</Text>
+                            </Pressable>
+                        </View>
+    </View>
+    
+    );
+};
+
+const styles = StyleSheet.create({
+
+    registerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#B8C6F5',
+        justifyContent: 'center',
+        marginBottom:10,
+    },
+    // box: {
+    //     flex: 1,
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     alignItems: 'center',
+    //     justifyContent: 'center'
+    // },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+    },
+    content: {
+        alignItems: 'center',
+        padding: 16,
+    },
+    title: {
+        fontSize: 24,
+        color: '#000',
+        marginBottom: 16,
+    },
+    txt:{
+        fontSize:
+    },
+    description: {
+        fontSize: 16,
+        color: '#000',
+        textAlign: 'center',
+        marginBottom: 24,
+    },
+    button: {
+        backgroundColor: '#3498db',
+        padding: 10,
+        marginTop:30,
+        borderRadius: 5,
+        width: '50%',
+        color: 'white',
+
+        
+    },
+
+    tag: {
+        fontWeight: 'bold',
+        marginBottom: 50
+    },
+
+    buttonText: {
+        fontSize: 18,
+        color: '#fff',
+    },
+
+    image: {
+        width: 200,
+        height: 200,
+        resizeMode: 'cover',
+        borderRadius: 10,
+    },
+    contentContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+    },
+
+    leftContainer: {
+        flex: 1,
+        alignItems: 'center',
+        width:'20%',
+    },
+
+   
+
+    loginForm: {
+        height:'90%',
+        width: '80%',
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 8,
+        elevation: 3,
+    },
+
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 5,
+        marginTop:50,
+        marginBottom: 10,
+        paddingLeft: 10,
+    },
+
+    
+    dontHaveAccountText: {
+        marginRight: 10,
+    },
+
+   
+
+    registerButton: {
+        padding: 10,
+        borderRadius: 5,
+        backgroundColor: '#3498db',
+    },
+
+    registerButtonText: {
+        color: '#fff',
+        fontSize: 16,
+    },
+    rightContainer: {
+        flex: 1,
+        height: 500,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width:4000
+        
+    
+
+    },
+
+    loginBox: {
+        alignItems: 'center',
+        backgroundColor: '#ecf0f1',
+        padding: 20,
+        borderRadius: 10,
+        elevation: 3,
+         width: '80%',
+        height: '100%', // Adjusted height
+    },
+    footer: {
+        flexDirection: 'row',
+        backgroundColor: 'black',
+        justifyContent: 'space-between',
+        padding: 16,
+        marginTop: 'auto', // Pushes the footer to the bottom
+        height:100,
+    },
+
+    socialIcons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '50%',
+    },
+
+    contactUsButton: {
+        backgroundColor: 'blue',
+        padding: 10,
+        borderRadius: 5,
+        height:50,
+    },
+
+    contactUsButtonText: {
+        color: '#fff',
+        fontSize: 16,
+    },
+    header: {
+        backgroundColor: '#3498db',
+        padding: 10,
+        alignItems: 'flex-start',
+    },
+    
+    headerTitle: {
+        color: '#fff',
+        fontSize: 20,
+        fontFamily:'cursive',
+        fontWeight: 'bold',
+    },
+});
+
+export default Home;
