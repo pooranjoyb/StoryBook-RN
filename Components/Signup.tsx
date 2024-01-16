@@ -38,7 +38,7 @@ const Signup = () => {
           }}
         />
         <Text style={styles.heading}>Sign Up</Text>
-        <Text style={styles.discription}>Create and account to access amazing and great stories ahead!!!</Text>
+        <Text style={styles.discription}>Create an account to access amazing and great stories ahead!!!</Text>
 
         <TextInput
           placeholder="Email"
