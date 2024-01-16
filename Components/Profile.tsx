@@ -31,7 +31,6 @@ const Profile: React.FC<Props> = ({ route }) => {
       navigation.navigate('Home' as never);
       
     } catch (err) {
-
       console.error(err)
     }
   }
