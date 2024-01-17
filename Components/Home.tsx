@@ -34,6 +34,7 @@ const Home = () => {
       
         Linking.openURL('https://www.github.com');
     };
+    
 
     const handleLinkedInPress = () => {
    
