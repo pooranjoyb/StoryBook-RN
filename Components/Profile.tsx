@@ -145,7 +145,7 @@ const Profile: React.FC<Props> = ({ route }) => {
             }}
           >
             <Text style={[styles.bodySubHeading, { backgroundColor: "white" }]}>
-              Interestes:{" "}
+              Interest: {" "}
             </Text>
 
             {interestsList.map((item, index) => getCards(item, index))}
