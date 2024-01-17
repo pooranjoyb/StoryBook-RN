@@ -63,7 +63,11 @@ const StoriesList = () => {
                         />
                     )
                 }
-                <Footer />
+
+                {/* Updating Footer style beause (View Profile) tab is not visible in StoryList Page (Now it's easy to navigate)*/}
+                <View style={{flex:1, justifyContent: 'center'}}>
+                    <Footer />
+                </View>
             </View>
         </>
     );
