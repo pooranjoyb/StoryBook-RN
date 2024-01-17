@@ -29,12 +29,6 @@ const StoriesList = () => {
         navigation.navigate('Story', { storyId });
     };
 
-    const getRandomColor = () => {
-        const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6']; // Add more colors if needed
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-    };
-
     return (
         <View style={styles.container}>
             {loading ? (
@@ -50,7 +44,7 @@ const StoriesList = () => {
                         keyExtractor={(item) => item.$id}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
-                                <View style={[styles.storyContainer, { backgroundColor: getRandomColor() }]}>
+                                <View style={styles.storyCard}>
                                     <Text style={styles.storyTitle}>{item.title}</Text>
                                     <Text style={styles.storyDetails}>{item.details}</Text>
                                 </View>
@@ -69,40 +63,40 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         padding: 16,
-        backgroundColor: 'pink',
+        backgroundColor: '#3498db',
     },
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'white',
     },
     noStoryText: {
         fontSize: 18,
         textAlign: 'center',
         marginTop: 20,
-        color: '#555',
+        color: '#fff',
     },
-    storyContainer: {
-        padding: 30,
+    storyCard: {
+        padding: 16,
         borderRadius: 12,
         marginBottom: 12,
-        backgroundColor: '#fff',
-        elevation: 5, // Add elevation for a shadow effect on Android
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        borderWidth: 5,
+        borderColor: 'rgba(255, 255, 255, 0.4)', // Semi-transparent white border
+        elevation: 5,
     },
     storyTitle: {
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: 25,
-        color: 'green',
+        color: '#fff',
         marginBottom: 8,
     },
     storyDetails: {
         textAlign: 'center',
         fontSize: 16,
-        color: '#555',
+        color: '#fff',
     },
-    
 });
 
 export default StoriesList;
