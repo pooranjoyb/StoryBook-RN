@@ -7,7 +7,8 @@ import {
   StatusBar,
   Systrace,
   Image,
-  Linking
+  Linking,
+  ImageBackground,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { RouteProp } from "@react-navigation/native";
@@ -18,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../utils/redux/userSlice";
 import { FontAwesome, MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { BlurView } from "expo-blur";
 
 type WelcomeRouteProps = {
   Welcome: { username: string };
@@ -34,6 +36,7 @@ type Props = {
 // This List is later fetched from backend that will be defined by individual user's interest
 const profilePhotoUrl =
   "https://www.unsw.edu.au/content/dam/images/medicine-health/population-health/headshots/2022-07-med-pop-health/2022-08-tewodros-profile.cropimg.width=335.crop=square.jpg";
+
 const interestsList = [
   "Sherlock Holmes",
   "StarLight Wishes",
@@ -118,7 +121,6 @@ const Profile: React.FC<Props> = ({ route }) => {
             uri: profilePhotoUrl,
           }}
         />
-        {/* <FontAwesome name="user-circle-o" size={100} color="black" /> */}
         <Text style={{ marginTop: 15, fontSize: 20, fontWeight: "500" }}>
           Username
         </Text>
@@ -128,62 +130,80 @@ const Profile: React.FC<Props> = ({ route }) => {
       </LinearGradient>
 
       <View style={styles.body}>
-        <View style={styles.bodyBox}>
-          <Text style={styles.bodyHeading}>Account Info: </Text>
-          <Text style={styles.bodySubHeading}>
-            Email: <Text style={styles.bodySubText}>{username}</Text>
-          </Text>
-          <Text style={styles.bodySubHeading}>
-            Age: <Text style={styles.bodySubText}>UserAge</Text>
-          </Text>
-
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "baseline",
-              flexWrap: "wrap",
-            }}
-          >
-            <Text style={[styles.bodySubHeading, { backgroundColor: "white" }]}>
-              Interestes:{" "}
+        <LinearGradient colors={[ "white" ,"#009BFF", "white"]} style={{ borderRadius: 10, overflow: 'scroll', width: "100%" , justifyContent: 'center', alignItems: 'center', flex: 1, paddingBottom: 25}}>
+          <BlurView intensity={30} style={styles.bodyBox}>
+            <Text style={styles.bodyHeading}>Account Info: </Text>
+            <Text style={styles.bodySubHeading}>
+              Email: <Text style={styles.bodySubText}>{username}</Text>
+            </Text>
+            <Text style={styles.bodySubHeading}>
+              Age: <Text style={styles.bodySubText}>UserAge</Text>
             </Text>
 
-            {interestsList.map((item, index) => getCards(item, index))}
-          </View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "baseline",
+                flexWrap: "wrap",
+              }}
+            >
+              <Text
+                style={[styles.bodySubHeading]}
+              >
+                Interestes:{" "}
+              </Text>
 
-          <View
-            style={{
-              marginTop: 10,
-              flexDirection: "row",
-              alignItems: "baseline",
-              flexWrap: "wrap",
-            }}
-          >
-            <Text style={[styles.bodySubHeading, { backgroundColor: "white" }]}>
-              Genre:{" "}
-            </Text>
-            {favoriteGenre.map((item, index) => getCards(item, index))}
-          </View>
-        </View>
+              {interestsList.map((item, index) => getCards(item, index))}
+            </View>
+
+            <View
+              style={{
+                marginTop: 10,
+                flexDirection: "row",
+                alignItems: "baseline",
+                flexWrap: "wrap",
+              }}
+            >
+              <Text style={[styles.bodySubHeading]}>Genre: </Text>
+              {favoriteGenre.map((item, index) => getCards(item, index))}
+            </View>
+          </BlurView>
+          </LinearGradient>
       </View>
 
       <View style={styles.footer}>
         <Text style={styles.footerText}>Having Trouble?</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Text style={styles.footerText}>Contact us on:</Text>
-          <Pressable onPress={() => Linking.openURL('https://github.com/pooranjoyb/StoryBook-RN')}>
+          <Pressable
+            onPress={() =>
+              Linking.openURL("https://github.com/pooranjoyb/StoryBook-RN")
+            }
+          >
             <Image
               style={styles.footerImages}
               source={{
-                uri: 'https://cdn-icons-png.flaticon.com/512/25/25231.png',
+                uri: "https://cdn-icons-png.flaticon.com/512/25/25231.png",
               }}
             />
           </Pressable>
-          <Pressable onPress={() => Linking.openURL('https://discord.com/channels/1186630692793233498/1194917839920959549')}>
+          <Pressable
+            onPress={() =>
+              Linking.openURL(
+                "https://discord.com/channels/1186630692793233498/1194917839920959549"
+              )
+            }
+          >
             <Image
-              style={[styles.footerImages, {padding: 13}]}
+              style={[styles.footerImages, { padding: 13 }]}
               source={{
-                uri: 'https://www.freepnglogos.com/uploads/discord-logo-png/discord-logo-logodownload-download-logotipos-1.png',
+                uri: "https://www.freepnglogos.com/uploads/discord-logo-png/discord-logo-logodownload-download-logotipos-1.png",
               }}
             />
           </Pressable>
@@ -200,13 +220,12 @@ const styles = StyleSheet.create({
   },
   heading: {
     padding: 10,
-    height: StatusBar.currentHeight ? StatusBar.currentHeight + 185 : 215,
     alignItems: "center",
     justifyContent: "center",
   },
   topBar: {
-    marginTop: 50,
-    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 15 : 45,
+    // marginTop: 50,
+    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight : 30,
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
@@ -218,16 +237,16 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1.5,
     borderColor: "black",
-    marginTop: 30,
   },
   body: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
   },
   bodyBox: {
-    borderWidth: 1,
-    borderColor: "black",
+    // borderWidth: 0.2,
+    overflow: 'scroll',
+    borderColor: "gray",
     borderRadius: 10,
     padding: 10,
     width: "90%",
@@ -253,18 +272,23 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
     marginTop: 5,
   },
-  footer: { backgroundColor: 'white', padding: 10, justifyContent: 'center', alignItems: 'center' },
+  footer: {
+    backgroundColor: "white",
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   footerText: {
     fontSize: 12,
-    color: 'gray',
-    textAlign: 'center',
+    color: "gray",
+    textAlign: "center",
   },
   footerImages: {
     height: 20,
     width: 20,
     marginLeft: 5,
     borderRadius: 10,
-  }
+  },
 });
 
 export default Profile;
