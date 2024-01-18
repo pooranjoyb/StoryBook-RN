@@ -30,31 +30,58 @@ const StoriesList = () => {
     };
 
     return (
-        <View style={styles.container}>
-            {loading ? (
-                <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#3498db" />
-                </View>
-            ) : (
-                stories.length === 0 ? (
-                    <Text style={styles.noStoryText}>No stories available</Text>
+        <>
+            <View style={styles.container}>
+                {loading ? (
+                    <View style={styles.loadingContainer}>
+                        <ActivityIndicator size="large" color="#3498db" />
+                    </View>
+                ) : (
+                    stories.length === 0 ? (
+                        <Text style={styles.noStoryText}>No stories available</Text>
+                    ) : (
+                        <FlatList
+                            data={stories}
+                            keyExtractor={(item) => item.$id}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
+                                    <View style={styles.storyCard}>
+                                        <Text style={styles.storyTitle}>{item.title}</Text>
+                                        <Text style={styles.storyDetails}>{item.details}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    )
+                )}
+                <Footer />
+            </View>
+
+            <View style={styles.container}>
+                {stories.length === 0 ? (
+                    <Text>No story available</Text>
                 ) : (
                     <FlatList
                         data={stories}
                         keyExtractor={(item) => item.$id}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
-                                <View style={styles.storyCard}>
-                                    <Text style={styles.storyTitle}>{item.title}</Text>
-                                    <Text style={styles.storyDetails}>{item.details}</Text>
+                                <View style={{ padding: 16, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+                                    <Text style={{
+                                        fontSize: 18
+                                    }}>{item.title}</Text>
                                 </View>
                             </TouchableOpacity>
                         )}
                     />
-                )
-            )}
-            <Footer />
-        </View>
+                )}
+
+                {/* Updating Footer style because (View Profile) tab is not visible in StoryList Page (Now it's easy to navigate)*/}
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <Footer />
+                </View>
+            </View>
+        </>
     );
 };
 
