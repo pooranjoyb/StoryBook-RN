@@ -28,60 +28,35 @@ const StoriesList = () => {
     const handleStoryPress = (storyId: string) => {
         navigation.navigate('Story', { storyId });
     };
-
+    
     return (
-        <>
-            <View style={styles.container}>
-                {loading ? (
-                    <View style={styles.loadingContainer}>
-                        <ActivityIndicator size="large" color="#3498db" />
-                    </View>
-                ) : (
-                    stories.length === 0 ? (
+        <View style={styles.container}>
+            {loading ? (
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#AFDBF5" />
+                </View>
+            ) : (
+                stories.length === 0 ? (
+                    
                         <Text style={styles.noStoryText}>No stories available</Text>
-                    ) : (
-                        <FlatList
-                            data={stories}
-                            keyExtractor={(item) => item.$id}
-                            renderItem={({ item }) => (
-                                <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
-                                    <View style={styles.storyCard}>
-                                        <Text style={styles.storyTitle}>{item.title}</Text>
-                                        <Text style={styles.storyDetails}>{item.details}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                        />
-                    )
-                )}
-                <Footer />
-            </View>
-
-            <View style={styles.container}>
-                {stories.length === 0 ? (
-                    <Text>No story available</Text>
+                    
                 ) : (
                     <FlatList
                         data={stories}
                         keyExtractor={(item) => item.$id}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
-                                <View style={{ padding: 16, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-                                    <Text style={{
-                                        fontSize: 18
-                                    }}>{item.title}</Text>
+                                <View style={styles.storyCard}>
+                                    <Text style={styles.storyTitle}>{item.title}</Text>
+                                    <Text style={styles.storyDetails}>{item.details}</Text>
                                 </View>
                             </TouchableOpacity>
                         )}
                     />
-                )}
-
-                {/* Updating Footer style because (View Profile) tab is not visible in StoryList Page (Now it's easy to navigate)*/}
-                <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <Footer />
-                </View>
-            </View>
-        </>
+                )
+            )}
+            <Footer />
+        </View>
     );
 };
 
@@ -90,9 +65,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         padding: 16,
-        backgroundColor: '#3498db',
+        backgroundColor: '#AFDBF5',
     },
     loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noStoryContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -107,9 +87,9 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 12,
         marginBottom: 12,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: '#87CEFA', 
         borderWidth: 5,
-        borderColor: 'rgba(255, 255, 255, 0.4)', // Semi-transparent white border
+        borderColor: 'rgba(255, 255, 255, 0.6)', 
         elevation: 5,
     },
     storyTitle: {
@@ -125,5 +105,6 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
 });
+
 
 export default StoriesList;
