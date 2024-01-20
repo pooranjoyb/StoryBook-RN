@@ -149,13 +149,13 @@ const StoriesList = () => {
                       (story) => story !== item
                     );
                     setFavStories(updatedFavStories);
-                    Alert.alert("Removed from Liked List");
+                    Alert.alert("Removed from Favoriate List");
                   } else {
                     setFavStories((prevFavStories) => [
                       ...prevFavStories,
                       item,
                     ]);
-                    Alert.alert("Added to Liked List");
+                    Alert.alert("Added to Favoriate List");
                   }
                 }}
               >
@@ -169,7 +169,7 @@ const StoriesList = () => {
               {/* Smooth Share icon functionalities */}
               <TouchableOpacity
                 style={{ paddingTop: 15 }}
-                onPress={() => Alert.alert("There")}
+                onPress={() => Alert.alert("Still in Progress!!!")} //access this option once the app host live
               >
                 <AntDesign name="sharealt" size={23} color="black" />
               </TouchableOpacity>
