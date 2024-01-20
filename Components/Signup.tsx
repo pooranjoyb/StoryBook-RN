@@ -168,7 +168,7 @@ const Signup = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#016173",
+    backgroundColor: "#028994",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -200,19 +200,21 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: "gray",
+    backgroundColor:"#D5FBFE",
     borderWidth: 0,
     borderBottomWidth: 1,
     marginBottom: 16,
-    width: "100%",
+    width: "70%",
+    borderRadius: 5,
     padding: 8,
     textAlign: "center",
     fontSize:20,
   },
   button: {
-    backgroundColor: "#3498db",
+    backgroundColor: "#0A6269",
     padding: 10,
     borderRadius: 5,
-    width: "50%",
+    width: "60%",
     alignItems: "center",
   },
   buttonText: {
