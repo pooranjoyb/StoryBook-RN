@@ -130,8 +130,18 @@ const Profile: React.FC<Props> = ({ route }) => {
       </LinearGradient>
 
       <View style={styles.body}>
-<<<<<<< HEAD
-        <LinearGradient colors={[ "white" ,"#009BFF", "white"]} style={{ borderRadius: 10, overflow: 'scroll', width: "100%" , justifyContent: 'center', alignItems: 'center', flex: 1, paddingBottom: 25}}>
+        <LinearGradient
+          colors={["white", "#009BFF", "white"]}
+          style={{
+            borderRadius: 10,
+            overflow: "scroll",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            flex: 1,
+            paddingBottom: 25,
+          }}
+        >
           <BlurView intensity={30} style={styles.bodyBox}>
             <Text style={styles.bodyHeading}>Account Info: </Text>
             <Text style={styles.bodySubHeading}>
@@ -139,57 +149,41 @@ const Profile: React.FC<Props> = ({ route }) => {
             </Text>
             <Text style={styles.bodySubHeading}>
               Age: <Text style={styles.bodySubText}>UserAge</Text>
-=======
-        <View style={styles.bodyBox}>
-          <Text style={styles.bodyHeading}>Account Info: </Text>
-          <Text style={styles.bodySubHeading}>
-            Email: <Text style={styles.bodySubText}>{username}</Text>
-          </Text>
-          <Text style={styles.bodySubHeading}>
-            Age: <Text style={styles.bodySubText}>UserAge</Text>
-          </Text>
-
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "baseline",
-              flexWrap: "wrap",
-            }}
-          >
-            <Text style={[styles.bodySubHeading, { backgroundColor: "white" }]}>
-              Interest: {" "}
->>>>>>> 767a2e5a2ebddf60e9a49bd39d1152df10ec5f91
             </Text>
-
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-              }}
-            >
-              <Text
-                style={[styles.bodySubHeading]}
-              >
-                Interestes:{" "}
+            <View style={styles.bodyBox}>
+              <Text style={styles.bodyHeading}>Account Info: </Text>
+              <Text style={styles.bodySubHeading}>
+                Email: <Text style={styles.bodySubText}>{username}</Text>
+              </Text>
+              <Text style={styles.bodySubHeading}>
+                Age: <Text style={styles.bodySubText}>UserAge</Text>
               </Text>
 
-              {interestsList.map((item, index) => getCards(item, index))}
-            </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "baseline",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Text style={[styles.bodySubHeading]}>Interestes: </Text>
+                {interestsList.map((item, index) => getCards(item, index))}
+              </View>
 
-            <View
-              style={{
-                marginTop: 10,
-                flexDirection: "row",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-              }}
-            >
-              <Text style={[styles.bodySubHeading]}>Genre: </Text>
-              {favoriteGenre.map((item, index) => getCards(item, index))}
+              <View
+                style={{
+                  marginTop: 10,
+                  flexDirection: "row",
+                  alignItems: "baseline",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Text style={[styles.bodySubHeading]}>Genre: </Text>
+                {favoriteGenre.map((item, index) => getCards(item, index))}
+              </View>
             </View>
           </BlurView>
-          </LinearGradient>
+        </LinearGradient>
       </View>
 
       <View style={styles.footer}>
@@ -266,7 +260,7 @@ const styles = StyleSheet.create({
   },
   bodyBox: {
     // borderWidth: 0.2,
-    overflow: 'scroll',
+    overflow: "scroll",
     borderColor: "gray",
     borderRadius: 10,
     padding: 10,
