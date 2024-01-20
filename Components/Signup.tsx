@@ -156,7 +156,7 @@ const Signup = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text style={{ fontSize: 30, fontWeight: "500" }}>
             Already have an account?{" "}
-            <Text style={{ color: "#3498db" }}>Login</Text>
+            <Text style={{ color: "#012F31" }}>Login</Text>
           </Text>
         </TouchableOpacity>
       </View>
@@ -168,11 +168,11 @@ const Signup = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#028994",
+    backgroundColor: "#01757A",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 16,
+    padding: 30,
   },
   image: {
     height: 160,
@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
   description: {
     textAlign: "center",
     fontWeight: "300",
+    fontFamily:"Monteserrat-Regular",
     fontSize: 25,
     width: "70%",
     marginBottom: 50,
@@ -211,10 +212,10 @@ const styles = StyleSheet.create({
     fontSize:20,
   },
   button: {
-    backgroundColor: "#0A6269",
+    backgroundColor: "#0A3D40",
     padding: 10,
     borderRadius: 5,
-    width: "60%",
+    width: "40%",
     alignItems: "center",
   },
   buttonText: {
