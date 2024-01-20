@@ -28,7 +28,11 @@ const StoriesList = () => {
     const handleStoryPress = (storyId: string) => {
         navigation.navigate('Story', { storyId });
     };
-
+    const getRandomColor = () => {
+        const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6']; // Add more colors if needed
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+    };
     return (
         <View style={styles.container}>
             {loading ? (
@@ -37,7 +41,9 @@ const StoriesList = () => {
                 </View>
             ) : (
                 stories.length === 0 ? (
-                    <Text style={styles.noStoryText}>No stories available</Text>
+                    
+                        <Text style={styles.noStoryText}>No stories available</Text>
+                    
                 ) : (
                     <FlatList
                         data={stories}
@@ -66,6 +72,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#3498db',
     },
     loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noStoryContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
