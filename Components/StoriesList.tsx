@@ -209,7 +209,7 @@ const StoriesList = () => {
         {/*All views of Modal*/}
 
         {/* modal Header */}
-        <BlurView intensity={25} tint={"dark"} style={styles.modalBackView}>
+        <BlurView intensity={3} tint={"dark"} style={styles.modalBackView}>
           <LinearGradient
             colors={["#FFFBA6", "#FF9F38"]}
             style={styles.modalContainer}
@@ -285,7 +285,7 @@ const StoriesList = () => {
         {/* header */}
         <View style={styles.header}>
           <Footer />
-          <Text style={styles.headingText}>Story List</Text>
+          <Text style={styles.headingText}>Stories List</Text>
           <MaterialIcons
             name="logout"
             size={30}
