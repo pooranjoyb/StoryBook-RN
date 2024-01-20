@@ -28,7 +28,7 @@ const Signup = () => {
   async function handleSignup() {
     try {
       const userId=ID.unique();
-      await account.create(userId, email, password,age,bio,nickname,fullName);
+      await account.create(userId, email, password,age);
       showMessage({
         message: "Account Successfully Created!",
         description: "Saved to Appwrite DB",
@@ -54,10 +54,10 @@ const Signup = () => {
           }}
         />
         <Text style={styles.heading}>Sign Up</Text>
-        <Text style={styles.discription}>
+        <Text style={styles.description}>
           Create an account to access amazing and great stories ahead!!!
         </Text>
-        <Text>Email</Text>
+        <Text style={styles.header}>Email</Text>
         <TextInput
           placeholder="storybook@gmail.com"
           value={email}
@@ -65,101 +65,110 @@ const Signup = () => {
           style={styles.input}
           keyboardType="email-address"
           autoCapitalize="none"
+          placeholderTextColor="gray"
         />
-        <Text>Password</Text>
+        <Text style={styles.header}>Password</Text>
         <TextInput
-          placeholder="xyz"
+          placeholder="*********"
           value={password}
           onChangeText={setPassword}
           style={styles.input}
           secureTextEntry
+          placeholderTextColor="gray"
         />
 
-        <Text>Age </Text>
+        <Text style={styles.header}>Age </Text>
         <TextInput
-          placeholder="14"
-
+          placeholder="Enter your age"
           style={styles.input}
           onChangeText={(text) => setAge(text)}
           value={age}
+          placeholderTextColor="gray"
         />
 
-        <Text>Bio </Text>
+        <Text style={styles.header}>Bio </Text>
         <TextInput
-        placeholder="passionate reader"
+        placeholder="Write a short bio"
           style={styles.input}
           onChangeText={(text) => setBio(text)}
           value={bio}
+          placeholderTextColor="gray"
         />
 
-        <Text>First Name</Text>
+        <Text style={styles.header}>First Name</Text>
         <TextInput
-        placeholder="Jose"
+        placeholder=" Jose"
           style={styles.input}
           onChangeText={(text) => setFirstName(text)}
           value={firstname}
+          placeholderTextColor="gray"
         />
 
-        <Text>Middle Name</Text>
+        <Text style={styles.header}>Middle Name</Text>
         <TextInput 
         placeholder="Andrew"
         style={styles.input}
         onChangeText={(text)=>setMiddleName(text)}
         value={middlename}
+        placeholderTextColor="gray"
         />
 
-        <Text>Last Name</Text>
+        <Text style={styles.header}>Last Name</Text>
         <TextInput
         placeholder="Dayne"
           style={styles.input}
           onChangeText={(text) => setLastName(text)}
           value={lastname}
+          placeholderTextColor="gray"
         />
 
-        <Text>Interests:</Text>
+        <Text style={styles.header}>Interests</Text>
         <TextInput
-        placeholder="reading"
+        placeholder="Reading"
           style={styles.input}
           onChangeText={(text) => setInterests(text)}
           value={interests}
+          placeholderTextColor="gray"
         />
 
-        <Text>Favorite Genres:</Text>
+        <Text style={styles.header}>Favorite Genres</Text>
         <TextInput
-        placeholder="e.g., Action, Drama"
+        placeholder="Action"
           style={styles.input}
           onChangeText={(text) => setFavoriteGenres(text)}
           value={favoriteGenres}
+          placeholderTextColor="gray"
         />
 
         <Pressable style={styles.button} onPress={handleSignup}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </Pressable>
-      </View>
+    
 
       <View
         style={{
           paddingBottom: 20,
-          backgroundColor: "#f5f5f5",
+          // backgroundColor: "#f5f5f5",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={{ fontSize: 15, fontWeight: "500" }}>
+          <Text style={{ fontSize: 30, fontWeight: "500" }}>
             Already have an account?{" "}
             <Text style={{ color: "#3498db" }}>Login</Text>
           </Text>
         </TouchableOpacity>
       </View>
       <FlashMessage position="top" />
+      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#016173",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -170,14 +179,21 @@ const styles = StyleSheet.create({
     width: 200,
   },
   heading: {
-    fontSize: 25,
-    fontWeight: "500",
+    fontSize: 50,
+    fontWeight: "bold",
     marginBottom: 2,
   },
-  discription: {
+
+  header:{
+    textAlign:"center",
+    fontSize:30,
+
+
+  },
+  description: {
     textAlign: "center",
     fontWeight: "300",
-    fontSize: 13,
+    fontSize: 25,
     width: "70%",
     marginBottom: 50,
   },
@@ -190,12 +206,13 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 8,
     textAlign: "center",
+    fontSize:20,
   },
   button: {
     backgroundColor: "#3498db",
     padding: 10,
     borderRadius: 5,
-    width: "100%",
+    width: "50%",
     alignItems: "center",
   },
   buttonText: {
