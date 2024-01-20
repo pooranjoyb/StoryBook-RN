@@ -121,7 +121,8 @@ const StoriesList = () => {
       <LinearGradient
         colors={[getRandomColor(), getRandomColor()]}
         style={{
-          marginTop: 15,
+          marginTop: 10,
+          marginBottom: 5,
           borderRadius: 15,
           borderWidth: 0,
           overflow: "scroll",
@@ -208,35 +209,13 @@ const StoriesList = () => {
         {/*All views of Modal*/}
 
         {/* modal Header */}
-        <BlurView
-          intensity={1}
-          tint={"dark"}
-          style={{
-            flex: 1,
-            alignItems: "flex-end",
-            justifyContent: "flex-end",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "white",
-              height: 500,
-              width: "100%",
-              padding: 15,
-              paddingTop: 15,
-              borderTopWidth: 0.5,
-              borderLeftWidth: 0.5,
-              borderRightWidth: 0.5,
-              borderTopLeftRadius: 25,
-              borderTopRightRadius: 25,
-            }}
+        <BlurView intensity={25} tint={"dark"} style={styles.modalBackView}>
+          <LinearGradient
+            colors={["#FFFBA6", "#FF9F38"]}
+            style={styles.modalContainer}
           >
             <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
+              style={styles.modalHeader}
             >
               <Text style={{ fontSize: 20, fontWeight: "600" }}>
                 Favoriate List
@@ -286,7 +265,7 @@ const StoriesList = () => {
                 )}
               />
             )}
-          </View>
+          </LinearGradient>
         </BlurView>
       </Modal>
       {/* End of Modal */}
@@ -363,18 +342,6 @@ const StoriesList = () => {
 };
 
 const styles = StyleSheet.create({
-  modal: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#00BCD4",
-    height: 300,
-    width: "80%",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#fff",
-    marginTop: 80,
-    marginLeft: 40,
-  },
   container: {
     flex: 1,
     paddingHorizontal: 10,
@@ -408,6 +375,28 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 10,
     overflow: "hidden",
+  },
+  modalBackView: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+  },
+  modalContainer: {
+    backgroundColor: "white",
+    height: 500,
+    width: "100%",
+    padding: 15,
+    paddingTop: 15,
+    borderTopWidth: 0.5,
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0.5,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
+  modalHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 });
 
