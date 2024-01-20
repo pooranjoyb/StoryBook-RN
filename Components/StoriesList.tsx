@@ -28,16 +28,12 @@ const StoriesList = () => {
     const handleStoryPress = (storyId: string) => {
         navigation.navigate('Story', { storyId });
     };
-    const getRandomColor = () => {
-        const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6']; // Add more colors if needed
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-    };
+    
     return (
         <View style={styles.container}>
             {loading ? (
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#3498db" />
+                    <ActivityIndicator size="large" color="#AFDBF5" />
                 </View>
             ) : (
                 stories.length === 0 ? (
@@ -69,7 +65,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         padding: 16,
-        backgroundColor: '#3498db',
+        backgroundColor: '#AFDBF5',
     },
     loadingContainer: {
         flex: 1,
@@ -91,9 +87,9 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 12,
         marginBottom: 12,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: '#87CEFA', 
         borderWidth: 5,
-        borderColor: 'rgba(255, 255, 255, 0.4)', // Semi-transparent white border
+        borderColor: 'rgba(255, 255, 255, 0.6)', 
         elevation: 5,
     },
     storyTitle: {
@@ -109,5 +105,6 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
 });
+
 
 export default StoriesList;
