@@ -25,59 +25,86 @@ const StoriesList = () => {
         fetchStories();
     }, []);
 
-    if (loading) {
-        return (
-            <View style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
-                <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-        );
-    }
-
     const handleStoryPress = (storyId: string) => {
         navigation.navigate('Story', { storyId });
     };
-
+    
     return (
-        <>
-            <View style={styles.container}>
-                {
-                    stories.length === 0 ? (
-                        <Text>No story available</Text>
-                    ) : (
-                        <FlatList
-                            data={stories}
-                            keyExtractor={(item) => item.$id}
-                            renderItem={({ item }) => (
-                                <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
-                                    <View style={{ padding: 16, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-                                        <Text style={{
-                                            fontSize: 18
-                                        }}>{item.title}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                        />
-                    )
-                }
-
-                {/* Updating Footer style beause (View Profile) tab is not visible in StoryList Page (Now it's easy to navigate)*/}
-                <View style={{flex:1, justifyContent: 'center'}}>
-                    <Footer />
+        <View style={styles.container}>
+            {loading ? (
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#AFDBF5" />
                 </View>
-            </View>
-        </>
+            ) : (
+                stories.length === 0 ? (
+                    
+                        <Text style={styles.noStoryText}>No stories available</Text>
+                    
+                ) : (
+                    <FlatList
+                        data={stories}
+                        keyExtractor={(item) => item.$id}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
+                                <View style={styles.storyCard}>
+                                    <Text style={styles.storyTitle}>{item.title}</Text>
+                                    <Text style={styles.storyDetails}>{item.details}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
+                    />
+                )
+            )}
+            <Footer />
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex", alignItems: 'center', height: 750, justifyContent: 'space-between'
-    }
-
+        flex: 1,
+        justifyContent: 'space-between',
+        padding: 16,
+        backgroundColor: '#AFDBF5',
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noStoryContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noStoryText: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginTop: 20,
+        color: '#fff',
+    },
+    storyCard: {
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 12,
+        backgroundColor: '#87CEFA', 
+        borderWidth: 5,
+        borderColor: 'rgba(255, 255, 255, 0.6)', 
+        elevation: 5,
+    },
+    storyTitle: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 25,
+        color: '#fff',
+        marginBottom: 8,
+    },
+    storyDetails: {
+        textAlign: 'center',
+        fontSize: 16,
+        color: '#fff',
+    },
 });
+
 
 export default StoriesList;
