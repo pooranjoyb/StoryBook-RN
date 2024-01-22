@@ -130,6 +130,7 @@ const Profile: React.FC<Props> = ({ route }) => {
       </LinearGradient>
 
       <View style={styles.body}>
+
         <LinearGradient colors={[ "white" ,"#009BFF", "white"]} style={{ borderRadius: 10, overflow: 'scroll', width: "100%" , justifyContent: 'center', alignItems: 'center', flex: 1, paddingBottom: 25}}>
           <BlurView intensity={30} style={styles.bodyBox}>
             <Text style={styles.bodyHeading}>Account Info: </Text>
@@ -138,6 +139,7 @@ const Profile: React.FC<Props> = ({ route }) => {
             </Text>
             <Text style={styles.bodySubHeading}>
               Age: <Text style={styles.bodySubText}>UserAge</Text>
+
             </Text>
 
             <View
@@ -167,8 +169,8 @@ const Profile: React.FC<Props> = ({ route }) => {
               <Text style={[styles.bodySubHeading]}>Genre: </Text>
               {favoriteGenre.map((item, index) => getCards(item, index))}
             </View>
-          </BlurView>
-          </LinearGradient>
+          </View>
+        </View>
       </View>
 
       <View style={styles.footer}>
