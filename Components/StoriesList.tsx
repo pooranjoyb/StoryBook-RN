@@ -9,7 +9,7 @@ import {
   StatusBar,
   Alert,
   Modal,
-  Button,
+  Pressable,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { db } from "../utils/appwrite/service";
@@ -90,26 +90,6 @@ const StoriesList = () => {
     }
   };
 
-  //random color generating function
-  function getRandomColor() {
-    const colorCodes = [
-      "#F5665B",
-      "#D86B62",
-      "#54DCF7",
-      "#BA77C3",
-      "#FF0E99",
-      "#44F276",
-      "#8B8D8C",
-      "#FFF63B",
-      "#53ba6a",
-      "#9abfe3",
-      "#64b483",
-      "#bfdecb",
-    ]; // Add more color codes as needed
-    const randomIndex = Math.floor(Math.random() * colorCodes.length);
-    return colorCodes[randomIndex];
-  }
-
   // function to render each story
   function StoryRender({ item }) {
     // updating date into right format
@@ -118,18 +98,8 @@ const StoriesList = () => {
 
     return (
       // shows a story
-      <LinearGradient
-        colors={[getRandomColor(), getRandomColor()]}
-        style={{
-          marginTop: 10,
-          marginBottom: 5,
-          borderRadius: 15,
-          borderWidth: 0,
-          overflow: "scroll",
-          elevation: 5,
-        }}
-      >
-        <BlurView intensity={80} style={styles.storyContainer}>
+      <LinearGradient colors={["#9ED4F9", "#5CACE2"]} style={styles.storyContainer}>
+        <BlurView intensity={80} style={styles.storyHeader}>
           <View style={{}}>
             <Text style={{ fontSize: 18, fontWeight: "500" }}>
               {item.title}
@@ -209,21 +179,19 @@ const StoriesList = () => {
         {/*All views of Modal*/}
 
         {/* modal Header */}
-        <BlurView intensity={3} tint={"dark"} style={styles.modalBackView}>
+        <BlurView intensity={3} tint={"light"} style={styles.modalBackView}>
           <LinearGradient
-            colors={["#FFFBA6", "#FF9F38"]}
+            colors={["#3498DB", "#3498DB"]}
             style={styles.modalContainer}
           >
-            <View
-              style={styles.modalHeader}
-            >
-              <Text style={{ fontSize: 20, fontWeight: "600" }}>
-                Favoriate List
+            <View style={styles.modalHeader}>
+              <Text style={{ fontSize: 20, fontWeight: "600", color: "white" }}>
+                Favourite List
               </Text>
               <Entypo
                 name="cross"
                 size={30}
-                color="black"
+                color="white"
                 onPress={() => setModalVisible(!modalVisible)}
               />
             </View>
@@ -235,7 +203,9 @@ const StoriesList = () => {
                   flex: 1,
                   alignItems: "center",
                   justifyContent: "center",
-                  paddingBottom: StatusBar.currentHeight + 15,
+                  paddingBottom: StatusBar.currentHeight
+                    ? StatusBar.currentHeight + 15
+                    : 45,
                 }}
               >
                 <Text
@@ -243,10 +213,13 @@ const StoriesList = () => {
                     textAlign: "center",
                     fontSize: 18,
                     fontWeight: "500",
+                    color: "white",
                   }}
                 >
                   No story available at this moment!!!{" "}
-                  <Text style={{ fontSize: 15, fontWeight: "300" }}>
+                  <Text
+                    style={{ color: "white", fontSize: 15, fontWeight: "300" }}
+                  >
                     {"\n"}Please Add Some Stories{" "}
                   </Text>
                 </Text>
@@ -259,9 +232,9 @@ const StoriesList = () => {
                 keyExtractor={(item) => item.$id}
                 style={{ marginTop: 7 }}
                 renderItem={({ item }) => (
-                  <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
+                  <Pressable onPress={() => handleStoryPress(item.$id)}>
                     <StoryRender item={item} />
-                  </TouchableOpacity>
+                  </Pressable>
                 )}
               />
             )}
@@ -273,12 +246,12 @@ const StoriesList = () => {
       {/* starting of the main application overview */}
       <LinearGradient
         colors={[
-          "#01796C",
-          "#007BFF",
-          "#35D6C5",
-          "#FFBAF4",
-          "#ACF1CF",
-          "#F5D578",
+          "#1FA3FB",
+          "#3498DB",
+          "#3498DB",
+          "#3498DB",
+          "#3498DB",
+          "#3498DB",
         ]}
         style={styles.container}
       >
@@ -318,23 +291,18 @@ const StoriesList = () => {
             keyExtractor={(item) => item.$id}
             style={{ marginTop: 7 }}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
+              <Pressable onPress={() => handleStoryPress(item.$id)}>
                 <StoryRender item={item} />
-              </TouchableOpacity>
+              </Pressable>
             )}
           />
         )}
 
         {/* Footer */}
         <View style={styles.footer}>
-          <View>
-            <AntDesign
-              name="heart"
-              size={24}
-              color="white"
-              onPress={() => setModalVisible(!modalVisible)}
-            />
-          </View>
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+            <AntDesign name="heart" size={24} color="white" />
+          </TouchableOpacity>
         </View>
       </LinearGradient>
     </>
@@ -371,6 +339,15 @@ const styles = StyleSheet.create({
     paddingBottom: StatusBar.currentHeight ? StatusBar.currentHeight + 15 : 45,
   },
   storyContainer: {
+    marginTop: 10,
+    marginBottom: 5,
+    borderRadius: 15,
+    borderWidth: 1.5,
+    overflow: "scroll",
+    elevation: 5,
+    borderColor: "#BFE3FB",
+  },
+  storyHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
