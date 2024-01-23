@@ -130,24 +130,25 @@ const Profile: React.FC<Props> = ({ route }) => {
       </LinearGradient>
 
       <View style={styles.body}>
-        <View style={styles.bodyBox}>
-          <Text style={styles.bodyHeading}>Account Info: </Text>
-          <Text style={styles.bodySubHeading}>
-            Email: <Text style={styles.bodySubText}>{username}</Text>
-          </Text>
-          <Text style={styles.bodySubHeading}>
-            Age: <Text style={styles.bodySubText}>UserAge</Text>
-          </Text>
-
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "baseline",
-              flexWrap: "wrap",
-            }}
-          >
-            <Text style={[styles.bodySubHeading, { backgroundColor: "white" }]}>
-              Interest: {" "}
+        <LinearGradient
+          colors={["white", "#009BFF", "white"]}
+          style={{
+            borderRadius: 10,
+            overflow: "scroll",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            flex: 1,
+            paddingBottom: 25,
+          }}
+        >
+          <BlurView intensity={30} style={styles.bodyBox}>
+            <Text style={styles.bodyHeading}>Account Info: </Text>
+            <Text style={styles.bodySubHeading}>
+              Email: <Text style={styles.bodySubText}>{username}</Text>
+            </Text>
+            <Text style={styles.bodySubHeading}>
+              Age: <Text style={styles.bodySubText}>UserAge</Text>
             </Text>
             <View style={styles.bodyBox}>
               <Text style={styles.bodyHeading}>Account Info: </Text>
@@ -181,8 +182,8 @@ const Profile: React.FC<Props> = ({ route }) => {
                 {favoriteGenre.map((item, index) => getCards(item, index))}
               </View>
             </View>
-          </View>
-        </View>
+          </BlurView>
+        </LinearGradient>
       </View>
 
       <View style={styles.footer}>
