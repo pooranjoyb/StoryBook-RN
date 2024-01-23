@@ -130,55 +130,53 @@ const Profile: React.FC<Props> = ({ route }) => {
       </LinearGradient>
 
       <View style={styles.body}>
-        <View style={styles.bodyBox}>
-          <Text style={styles.bodyHeading}>Account Info: </Text>
-          <Text style={styles.bodySubHeading}>
-            Email: <Text style={styles.bodySubText}>{username}</Text>
-          </Text>
-          <Text style={styles.bodySubHeading}>
-            Age: <Text style={styles.bodySubText}>UserAge</Text>
-          </Text>
-
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "baseline",
-              flexWrap: "wrap",
-            }}
-          >
-            <Text style={[styles.bodySubHeading, { backgroundColor: "white" }]}>
-              Interest: {" "}
-            </Text>
-
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-              }}
-            >
-              <Text
-                style={[styles.bodySubHeading]}
-              >
-                Interestes:{" "}
+        <LinearGradient
+          colors={["white", "#009BFF", "white"]}
+          style={{
+            borderRadius: 10,
+            overflow: "scroll",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            flex: 1,
+            paddingBottom: 25,
+          }}
+        >
+          <BlurView intensity={30} style={styles.bodyBox}>
+            <View style={styles.bodyBox}>
+              <Text style={styles.bodyHeading}>Account Info: </Text>
+              <Text style={styles.bodySubHeading}>
+                Email: <Text style={styles.bodySubText}>{username}</Text>
+              </Text>
+              <Text style={styles.bodySubHeading}>
+                Age: <Text style={styles.bodySubText}>UserAge</Text>
               </Text>
 
-              {interestsList.map((item, index) => getCards(item, index))}
-            </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "baseline",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Text style={[styles.bodySubHeading]}>Interestes: </Text>
+                {interestsList.map((item, index) => getCards(item, index))}
+              </View>
 
-            <View
-              style={{
-                marginTop: 10,
-                flexDirection: "row",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-              }}
-            >
-              <Text style={[styles.bodySubHeading]}>Genre: </Text>
-              {favoriteGenre.map((item, index) => getCards(item, index))}
+              <View
+                style={{
+                  marginTop: 10,
+                  flexDirection: "row",
+                  alignItems: "baseline",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Text style={[styles.bodySubHeading]}>Genre: </Text>
+                {favoriteGenre.map((item, index) => getCards(item, index))}
+              </View>
             </View>
-          </View>
-        </View>
+          </BlurView>
+        </LinearGradient>
       </View>
 
       <View style={styles.footer}>
@@ -255,7 +253,7 @@ const styles = StyleSheet.create({
   },
   bodyBox: {
     // borderWidth: 0.2,
-    overflow: 'scroll',
+    overflow: "scroll",
     borderColor: "gray",
     borderRadius: 10,
     padding: 10,
