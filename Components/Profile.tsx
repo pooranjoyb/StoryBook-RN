@@ -143,13 +143,6 @@ const Profile: React.FC<Props> = ({ route }) => {
           }}
         >
           <BlurView intensity={30} style={styles.bodyBox}>
-            <Text style={styles.bodyHeading}>Account Info: </Text>
-            <Text style={styles.bodySubHeading}>
-              Email: <Text style={styles.bodySubText}>{username}</Text>
-            </Text>
-            <Text style={styles.bodySubHeading}>
-              Age: <Text style={styles.bodySubText}>UserAge</Text>
-            </Text>
             <View style={styles.bodyBox}>
               <Text style={styles.bodyHeading}>Account Info: </Text>
               <Text style={styles.bodySubHeading}>
