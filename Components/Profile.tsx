@@ -130,26 +130,31 @@ const Profile: React.FC<Props> = ({ route }) => {
       </LinearGradient>
 
       <View style={styles.body}>
-        <LinearGradient
-          colors={["white", "#009BFF", "white"]}
-          style={{
-            borderRadius: 10,
-            overflow: "scroll",
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: 1,
-            paddingBottom: 25,
-          }}
-        >
+
+
+        <LinearGradient colors={[ "white" ,"#009BFF", "white"]} style={{ borderRadius: 10, overflow: 'scroll', width: "100%" , justifyContent: 'center', alignItems: 'center', flex: 1, paddingBottom: 25}}>
           <BlurView intensity={30} style={styles.bodyBox}>
-            <View style={styles.bodyBox}>
-              <Text style={styles.bodyHeading}>Account Info: </Text>
-              <Text style={styles.bodySubHeading}>
-                Email: <Text style={styles.bodySubText}>{username}</Text>
-              </Text>
-              <Text style={styles.bodySubHeading}>
-                Age: <Text style={styles.bodySubText}>UserAge</Text>
+            <Text style={styles.bodyHeading}>Account Info: </Text>
+            <Text style={styles.bodySubHeading}>
+              Email: <Text style={styles.bodySubText}>{username}</Text>
+            </Text>
+            <Text style={styles.bodySubHeading}>
+              Age: <Text style={styles.bodySubText}>UserAge</Text>
+
+            </Text>
+
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "baseline",
+                flexWrap: "wrap",
+              }}
+            >
+              <Text
+                style={[styles.bodySubHeading]}
+              >
+                Interestes:{" "}
+
               </Text>
 
               <View
