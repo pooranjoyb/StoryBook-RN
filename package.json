@@ -21,6 +21,7 @@
     "expo-linear-gradient": "~12.3.0",
     "expo-router": "^2.0.4",
     "expo-status-bar": "~1.6.0",
+    "moment": "^2.30.1",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-flash-message": "^0.4.2",
@@ -32,9 +33,7 @@
     "react-native-web": "~0.19.6",
     "react-redux": "^9.0.4",
     "redux": "^5.0.0",
-    "redux-persist": "^6.0.0",
-    "expo-linear-gradient": "~12.3.0",
-    "expo-blur": "~12.4.1"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

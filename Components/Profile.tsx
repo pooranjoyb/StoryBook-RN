@@ -131,6 +131,7 @@ const Profile: React.FC<Props> = ({ route }) => {
 
       <View style={styles.body}>
 
+
         <LinearGradient colors={[ "white" ,"#009BFF", "white"]} style={{ borderRadius: 10, overflow: 'scroll', width: "100%" , justifyContent: 'center', alignItems: 'center', flex: 1, paddingBottom: 25}}>
           <BlurView intensity={30} style={styles.bodyBox}>
             <Text style={styles.bodyHeading}>Account Info: </Text>
@@ -153,24 +154,34 @@ const Profile: React.FC<Props> = ({ route }) => {
                 style={[styles.bodySubHeading]}
               >
                 Interestes:{" "}
+
               </Text>
 
-              {interestsList.map((item, index) => getCards(item, index))}
-            </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "baseline",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Text style={[styles.bodySubHeading]}>Interestes: </Text>
+                {interestsList.map((item, index) => getCards(item, index))}
+              </View>
 
-            <View
-              style={{
-                marginTop: 10,
-                flexDirection: "row",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-              }}
-            >
-              <Text style={[styles.bodySubHeading]}>Genre: </Text>
-              {favoriteGenre.map((item, index) => getCards(item, index))}
+              <View
+                style={{
+                  marginTop: 10,
+                  flexDirection: "row",
+                  alignItems: "baseline",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Text style={[styles.bodySubHeading]}>Genre: </Text>
+                {favoriteGenre.map((item, index) => getCards(item, index))}
+              </View>
             </View>
-          </View>
-        </View>
+          </BlurView>
+        </LinearGradient>
       </View>
 
       <View style={styles.footer}>
@@ -247,7 +258,7 @@ const styles = StyleSheet.create({
   },
   bodyBox: {
     // borderWidth: 0.2,
-    overflow: 'scroll',
+    overflow: "scroll",
     borderColor: "gray",
     borderRadius: 10,
     padding: 10,
