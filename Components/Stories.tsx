@@ -9,7 +9,7 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { db } from "../utils/appwrite/service";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -23,6 +23,7 @@ const Story = () => {
   const params = route.params as RouteParams;
   const [story, setStory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const fetchStory = async () => {
@@ -66,7 +67,7 @@ const Story = () => {
     <View style={styles.container}>
       {/* // Header */}
       <View style={styles.heading}>
-        <Ionicons name="arrow-back-outline" size={24} color="white" />
+        <Ionicons name="arrow-back-outline" size={24} color="white" onPress={() => navigation.goBack()} />
         <Text style={styles.headingFont}>Story</Text>
       </View>
 
