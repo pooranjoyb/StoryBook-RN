@@ -143,7 +143,6 @@ const Profile: React.FC<Props> = ({ route }) => {
           }}
         >
           <BlurView intensity={30} style={styles.bodyBox}>
-            <View style={styles.bodyBox}>
               <Text style={styles.bodyHeading}>Account Info: </Text>
               <Text style={styles.bodySubHeading}>
                 Email: <Text style={styles.bodySubText}>{username}</Text>
@@ -174,7 +173,6 @@ const Profile: React.FC<Props> = ({ route }) => {
                 <Text style={[styles.bodySubHeading]}>Genre: </Text>
                 {favoriteGenre.map((item, index) => getCards(item, index))}
               </View>
-            </View>
           </BlurView>
         </LinearGradient>
       </View>
@@ -252,7 +250,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   bodyBox: {
-    // borderWidth: 0.2,
+    // borderWidth: 1,
     overflow: "scroll",
     borderColor: "gray",
     borderRadius: 10,
