@@ -47,7 +47,7 @@ const StoriesList = () => {
           "657ef4698093d40c3e86",
           "657ef47a34784a4383d1"
         );
-        console.log(response);
+        // console.log(response);
         setStories(response.documents as never);
         setLoading(false);
       } catch (error) {
@@ -174,6 +174,7 @@ const StoriesList = () => {
         visible={modalVisible}
         onRequestClose={() => {
           console.log("Modal has been closed.");
+          setModalVisible(!modalVisible);
         }}
       >
         {/*All views of Modal*/}

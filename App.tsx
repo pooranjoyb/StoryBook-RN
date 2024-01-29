@@ -26,7 +26,7 @@ export default function App() {
             <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
             {<Stack.Screen name="Profile" component={Profile} options={{headerShown: false}} />}
             {<Stack.Screen name="StoriesList" component={StoriesList} options={{headerShown: false}} />}
-            {<Stack.Screen name="Story" component={Story} />}
+              {<Stack.Screen name="Story" component={Story} options={{headerShown: false}} />}
           </Stack.Navigator>
           <StatusBar style="auto" />
         </NavigationContainer>
