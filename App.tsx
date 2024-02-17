@@ -17,6 +17,7 @@ import Story from './Components/Stories';
 
 const Stack = createStackNavigator();
 
+
 const App = () => {
     return (
         <Provider store={store}>
@@ -43,5 +44,26 @@ const App = () => {
         </Provider>
     );
 };
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+            <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}} />
+            <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+            {<Stack.Screen name="Profile" component={Profile} options={{headerShown: false}} />}
+            {<Stack.Screen name="StoriesList" component={StoriesList} options={{headerShown: false}} />}
+              {<Stack.Screen name="Story" component={Story} options={{headerShown: false}} />}
+          </Stack.Navigator>
+          <StatusBar style="auto" />
+        </NavigationContainer>
+        </PersistGate>
+    </Provider>
+  );
+}
+
 
 export default App;

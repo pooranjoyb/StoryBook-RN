@@ -97,8 +97,12 @@ const Login = () => {
                     alignItems: "center",
                 }}
             >
+
                 <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
                     <Text style={{ fontSize: 15, fontWeight: "500", color: isDarkMode ? "#fff" : "#3498db" }}>
+                <TouchableOpacity onPress={() => navigation.navigate("Signup" as never)}>
+                    <Text style={{ fontSize: 15, fontWeight: "500" }}>
+
                         Don't have an account? <Text style={{color: '#3498db'}}>SignUp</Text>
                     </Text>
                 </TouchableOpacity>

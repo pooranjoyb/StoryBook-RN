@@ -1,8 +1,10 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Touchable } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { Rootstate } from '../utils/redux/store'
+import { RootState } from '../utils/redux/store';
+import { Feather } from "@expo/vector-icons";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Footer = () => {
     const navigation = useNavigation();
@@ -13,10 +15,10 @@ const Footer = () => {
     }
 
     return (
-        <View style={{ backgroundColor: '#f8f8f8', padding: 16, alignItems: 'center', justifyContent: 'center', bottom: 0 }}>
-            <Pressable onPress={handleProfilePress}>
-                <Text style={{ color: '#007BFF', fontWeight: 'bold' }}>View Profile</Text>
-            </Pressable>
+        <View>
+            <TouchableOpacity onPress={handleProfilePress}>
+                <Feather name="user" size={30} color="white" />
+            </TouchableOpacity>
         </View>
     )
 }

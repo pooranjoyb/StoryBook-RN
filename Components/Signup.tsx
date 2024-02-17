@@ -11,6 +11,13 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [age,setAge]=useState('');
+  const [fullName,setFullName]=useState('');
+  const [bio,setBio]=useState('');
+  const [nickname,setNickname]=useState('');
+  const [interests,setInterests]=useState('');
+  const [favoriteGenres,setFavoriteGenres]=useState('');
+  
   const navigation = useNavigation();
   const { isDarkMode, toggleDarkMode } = useTheme();
 
@@ -62,6 +69,68 @@ const Signup = () => {
           style={[styles.input, { color: isDarkMode ? "#fff" : "#000" }]}
           secureTextEntry
         />
+  placeholder="Full Name"
+  value={fullName}
+  onChangeText={setFullName}
+  style={styles.input}
+  autoCapitalize="words"
+/>
+
+<TextInput
+  placeholder="Nickname"
+  value={nickname}
+  onChangeText={setNickname}
+  style={styles.input}
+  autoCapitalize="none"
+/>
+
+<TextInput
+  placeholder="Age"
+  value={age}
+  onChangeText={setAge}
+  style={styles.input}
+  keyboardType="numeric"
+/>
+
+<TextInput
+  placeholder="Bio"
+  value={bio}
+  onChangeText={setBio}
+  style={styles.input}
+  multiline
+  numberOfLines={3}
+/>
+
+<TextInput
+  placeholder="Interests"
+  value={interests}
+  onChangeText={setInterests}
+  style={styles.input}
+/>
+
+<TextInput
+  placeholder="Favorite Genres"
+  value={favoriteGenres}
+  onChangeText={setFavoriteGenres}
+  style={styles.input}
+/>
+
+<TextInput
+  placeholder="Email"
+  value={email}
+  onChangeText={setEmail}
+  style={styles.input}
+  keyboardType="email-address"
+  autoCapitalize="none"
+/>
+
+<TextInput
+  placeholder="Password"
+  value={password}
+  onChangeText={setPassword}
+  style={styles.input}
+  secureTextEntry
+/>
 
         <Pressable style={styles.button} onPress={handleSignup}>
           <Text style={styles.buttonText}>Sign Up</Text>
