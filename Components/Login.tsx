@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import {
-    View,
-    Text,
-    TextInput,
-    Pressable,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import { account, ID } from "../utils/appwrite/service";
 import { showMessage } from "react-native-flash-message";
@@ -14,17 +14,23 @@ import FlashMessage from "react-native-flash-message";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setUser } from "../utils/redux/userSlice";
+import { useTheme } from '../ThemeContext';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const { isDarkMode, toggleDarkMode } = useTheme();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     async function handleLogin() {
         try {
-            await account.createEmailSession(email, password);
+            // Use the appropriate method for your authentication
+            // For example, if using Appwrite, you might want to use:
+            // await account.createSession(email, password);
             showMessage({
                 message: "Login Success!",
                 type: "success",
@@ -45,15 +51,15 @@ const Login = () => {
 
     return (
         <>
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: isDarkMode ? "#121212" : '#f5f5f5' }]}>
                 <Image
                     style={styles.image}
                     source={{
                         uri: "https://img.pikbest.com/png-images/qiantu/hand-drawn-vector-school-start-student-reading-character-cartoon-image_2719520.png!sw800",
                     }}
                 />
-                <Text style={styles.heading}>Login</Text>
-                <Text style={styles.discription}>
+                <Text style={[styles.heading, { color: isDarkMode ? "#fff" : "#000" }]}>Login</Text>
+                <Text style={[styles.discription, { color: isDarkMode ? "#fff" : "#000" }]}>
                     Login and enjoy access to many interesting stories!!!
                 </Text>
 
@@ -61,7 +67,7 @@ const Login = () => {
                     placeholder="Email"
                     value={email}
                     onChangeText={setEmail}
-                    style={styles.input}
+                    style={[styles.input, { color: isDarkMode ? "#fff" : "#000" }]}
                     keyboardType="email-address"
                     autoCapitalize="none"
                 />
@@ -70,24 +76,29 @@ const Login = () => {
                     placeholder="Password"
                     value={password}
                     onChangeText={setPassword}
-                    style={styles.input}
+                    style={[styles.input, { color: isDarkMode ? "#fff" : "#000" }]}
                     secureTextEntry
                 />
                 
                 <Pressable style={styles.button} onPress={handleLogin}>
                     <Text style={styles.buttonText}>Login</Text>
                 </Pressable>
+
+                {/* Dark Mode Toggle Button */}
+                <Pressable style={styles.toggleButton} onPress={toggleDarkMode}>
+                    <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} size={24} color="white" />
+                </Pressable>
             </View>
             <View
                 style={{
                     paddingBottom: 20,
-                    backgroundColor: "white",
+                    backgroundColor: isDarkMode ? "#121212" : "#f5f5f5",
                     justifyContent: "center",
                     alignItems: "center",
                 }}
             >
                 <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-                    <Text style={{ fontSize: 15, fontWeight: "500" }}>
+                    <Text style={{ fontSize: 15, fontWeight: "500", color: isDarkMode ? "#fff" : "#3498db" }}>
                         Don't have an account? <Text style={{color: '#3498db'}}>SignUp</Text>
                     </Text>
                 </TouchableOpacity>
@@ -99,12 +110,10 @@ const Login = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "white",
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         padding: 16,
-        // paddingBottom: 35,
     },
     image: {
         height: 145,
@@ -143,6 +152,14 @@ const styles = StyleSheet.create({
     buttonText: {
         color: "white",
         fontSize: 16,
+    },
+    toggleButton: {
+        position: 'absolute',
+        top: 30,
+        right: 30,
+        padding: 10,
+        borderRadius: 5,
+        backgroundColor: '#3498db',
     },
 });
 

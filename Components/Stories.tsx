@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, View, Text, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { db } from '../utils/appwrite/service';
+import { useTheme } from '../ThemeContext';
 
 interface RouteParams {
     storyId?: string;
@@ -12,6 +13,7 @@ const Story = () => {
     const params = route.params as RouteParams;
     const [story, setStory] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { isDarkMode } = useTheme(); 
 
     useEffect(() => {
         const fetchStory = async () => {
@@ -32,31 +34,32 @@ const Story = () => {
 
     if (loading) {
         return (
-          <View style={{flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',}}>
-            <ActivityIndicator size="large" color="#0000ff" />
-          </View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
         );
-      }
+    }
 
     return (
-        <View style={{ padding: 16 }}>
-            {
-                story.length === 0 ? (
-                    <Text>No story available</Text>
-                ) : (
-                    <>
-                     <ScrollView style={{height: '100%', width: '100%'}}>
-                        <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{story.title}</Text>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold', paddingTop: 20 }}>Author : {story.author}</Text>
-
-                        <Text style={{ paddingTop: 15, fontSize:17 }}>{story.data}</Text>
-                        <Text style={{ fontWeight: 'bold', fontSize:20, paddingTop: 20 }}>MORAL : {story.moral}</Text>
-                        </ScrollView>
-                    </>
-                )
-            }
+        <View style={{ padding: 16, backgroundColor: isDarkMode ? '#121212' : '#fff' }}>
+            {story.length === 0 ? (
+                <Text>No story available</Text>
+            ) : (
+                <>
+                    <ScrollView style={{ height: '100%', width: '100%' }}>
+                        <Text style={{ fontSize: 25, fontWeight: 'bold', color: isDarkMode ? '#fff' : '#000' }}>
+                            {story.title}
+                        </Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', paddingTop: 20, color: isDarkMode ? '#fff' : '#000' }}>
+                            Author : {story.author}
+                        </Text>
+                        <Text style={{ paddingTop: 15, fontSize: 17, color: isDarkMode ? '#fff' : '#000' }}>{story.data}</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 20, paddingTop: 20, color: isDarkMode ? '#fff' : '#000' }}>
+                            MORAL : {story.moral}
+                        </Text>
+                    </ScrollView>
+                </>
+            )}
         </View>
     );
 };

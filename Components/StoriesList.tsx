@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../utils/appwrite/service';
-
+import { useTheme } from '../ThemeContext';
 import Footer from './Footer';
 
 const StoriesList = () => {
     const navigation = useNavigation();
     const [stories, setStories] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { isDarkMode } = useTheme(); 
 
     useEffect(() => {
         const fetchStories = async () => {
@@ -30,25 +31,23 @@ const StoriesList = () => {
     };
     
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: isDarkMode ? '#121212' : '#AFDBF5' }]}>
             {loading ? (
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#AFDBF5" />
+                    <ActivityIndicator size="large" color={isDarkMode ? '#fff' : '#0000ff'} />
                 </View>
             ) : (
                 stories.length === 0 ? (
-                    
-                        <Text style={styles.noStoryText}>No stories available</Text>
-                    
+                    <Text style={styles.noStoryText}>No stories available</Text>
                 ) : (
                     <FlatList
                         data={stories}
                         keyExtractor={(item) => item.$id}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => handleStoryPress(item.$id)}>
-                                <View style={styles.storyCard}>
-                                    <Text style={styles.storyTitle}>{item.title}</Text>
-                                    <Text style={styles.storyDetails}>{item.details}</Text>
+                                <View style={[styles.storyCard, { borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.6)' : 'transparent' }]}>
+                                    <Text style={[styles.storyTitle, { color: isDarkMode ? '#fff' : '#000' }]}>{item.title}</Text>
+                                    <Text style={[styles.storyDetails, { color: isDarkMode ? '#fff' : '#000' }]}>{item.details}</Text>
                                 </View>
                             </TouchableOpacity>
                         )}
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         padding: 16,
-        backgroundColor: '#AFDBF5',
     },
     loadingContainer: {
         flex: 1,
@@ -89,22 +87,18 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         backgroundColor: '#87CEFA', 
         borderWidth: 5,
-        borderColor: 'rgba(255, 255, 255, 0.6)', 
         elevation: 5,
     },
     storyTitle: {
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: 25,
-        color: '#fff',
         marginBottom: 8,
     },
     storyDetails: {
         textAlign: 'center',
         fontSize: 16,
-        color: '#fff',
     },
 });
-
 
 export default StoriesList;

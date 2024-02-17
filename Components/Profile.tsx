@@ -6,6 +6,7 @@ import { account } from '../utils/appwrite/service';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../utils/redux/userSlice';
+import { useTheme } from '../ThemeContext';
 
 type WelcomeRouteProps = {
   Welcome: { username: string };
@@ -22,23 +23,23 @@ const Profile: React.FC<Props> = ({ route }) => {
   const { username } = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const { isDarkMode } = useTheme(); 
 
   const handleLogout = async () => {
     try {
       await account.deleteSession('current');
       const user = { username: '', isAuthenticated: false };
-      dispatch(setUser(user))
+      dispatch(setUser(user));
       navigation.navigate('Home' as never);
-      
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 24, marginBottom: 16 }}>Welcome, {username}!</Text>
-      <Text>You can update your profile details here.</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: isDarkMode ? '#121212' : '#fff' }}>
+      <Text style={{ fontSize: 24, marginBottom: 16, color: isDarkMode ? '#fff' : '#000' }}>Welcome, {username}!</Text>
+      <Text style={{ color: isDarkMode ? '#fff' : '#000' }}>You can update your profile details here.</Text>
       <View style={{ backgroundColor: '#f8f8f8', padding: 16, alignItems: 'center', justifyContent: 'center', bottom: 0 }}>
         <Pressable onPress={handleLogout}>
           <Text style={{ color: '#007BFF', fontWeight: 'bold' }}>Logout</Text>
