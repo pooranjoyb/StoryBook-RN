@@ -1,3 +1,13 @@
+
+import React from 'react';
+import { View, Text, Pressable } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { account } from '../utils/appwrite/service';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../utils/redux/userSlice';
+import { useTheme } from '../ThemeContext';
 import React from "react";
 import {
   View,
@@ -20,6 +30,7 @@ import { setUser } from "../utils/redux/userSlice";
 import { FontAwesome, MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { BlurView } from "expo-blur";
+
 
 type WelcomeRouteProps = {
   Welcome: { username: string };
@@ -84,17 +95,36 @@ const Profile: React.FC<Props> = ({ route }) => {
   const { username } = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const { isDarkMode } = useTheme(); 
 
   const handleLogout = async () => {
     try {
+
+      await account.deleteSession('current');
+      const user = { username: '', isAuthenticated: false };
+      dispatch(setUser(user));
+      navigation.navigate('Home' as never);
+
       await account.deleteSession("current");
       const user = { username: "", isAuthenticated: false };
       dispatch(setUser(user));
       navigation.navigate("Home" as never);
+
     } catch (err) {
       console.error(err);
     }
   };
+
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: isDarkMode ? '#121212' : '#fff' }}>
+      <Text style={{ fontSize: 24, marginBottom: 16, color: isDarkMode ? '#fff' : '#000' }}>Welcome, {username}!</Text>
+      <Text style={{ color: isDarkMode ? '#fff' : '#000' }}>You can update your profile details here.</Text>
+      <View style={{ backgroundColor: '#f8f8f8', padding: 16, alignItems: 'center', justifyContent: 'center', bottom: 0 }}>
+        <Pressable onPress={handleLogout}>
+          <Text style={{ color: '#007BFF', fontWeight: 'bold' }}>Logout</Text>
+        </Pressable>
+
 
   const handleDirectOnBackpage = () => {
     navigation.navigate("StoriesList" as never);
@@ -219,6 +249,7 @@ const Profile: React.FC<Props> = ({ route }) => {
   );
 };
 
+export default Profile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -298,3 +329,4 @@ const styles = StyleSheet.create({
 });
 
 export default Profile;
+

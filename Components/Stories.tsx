@@ -1,3 +1,9 @@
+
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, View, Text, ScrollView } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { db } from '../utils/appwrite/service';
+import { useTheme } from '../ThemeContext';
 import React, { useEffect, useState, useContext } from "react";
 import {
   ActivityIndicator,
@@ -19,6 +25,11 @@ interface RouteParams {
 }
 
 const Story = () => {
+    const route = useRoute();
+    const params = route.params as RouteParams;
+    const [story, setStory] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { isDarkMode } = useTheme(); 
   const route = useRoute();
   const params = route.params as RouteParams;
   const [story, setStory] = useState([]);
@@ -70,7 +81,36 @@ const Story = () => {
         <Ionicons name="arrow-back-outline" size={24} color="white" onPress={() => navigation.goBack()} />
         <Text style={styles.headingFont}>Story</Text>
       </View>
+    if (loading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+        );
+    }
 
+    return (
+        <View style={{ padding: 16, backgroundColor: isDarkMode ? '#121212' : '#fff' }}>
+            {story.length === 0 ? (
+                <Text>No story available</Text>
+            ) : (
+                <>
+                    <ScrollView style={{ height: '100%', width: '100%' }}>
+                        <Text style={{ fontSize: 25, fontWeight: 'bold', color: isDarkMode ? '#fff' : '#000' }}>
+                            {story.title}
+                        </Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', paddingTop: 20, color: isDarkMode ? '#fff' : '#000' }}>
+                            Author : {story.author}
+                        </Text>
+                        <Text style={{ paddingTop: 15, fontSize: 17, color: isDarkMode ? '#fff' : '#000' }}>{story.data}</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 20, paddingTop: 20, color: isDarkMode ? '#fff' : '#000' }}>
+                            MORAL : {story.moral}
+                        </Text>
+                    </ScrollView>
+                </>
+            )}
+        </View>
+    );
       {/* body */}
       <LinearGradient style={styles.bodyCover} colors={["#1FA3FB", "#3498DB"]}>
         {story.length === 0 ? (

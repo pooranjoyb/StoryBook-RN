@@ -1,14 +1,19 @@
 import React from "react";
-import { View, Linking, Text, Pressable, StyleSheet, Image } from "react-native";
+import {
+    View,
+    Linking,
+    Text,
+    Pressable,
+    StyleSheet,
+    Image,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { selectUser } from "../utils/redux/userSlice";
-import { useTheme } from "../ThemeContext"; 
 
 const Home = () => {
     const user = useSelector(selectUser);
     const navigation = useNavigation();
-    const { isDarkMode, toggleDarkMode } = useTheme(); 
 
     const handleSignupPress = () => {
         navigation.navigate("Signup" as never);
@@ -23,13 +28,14 @@ const Home = () => {
     };
 
     return (
-        <View style={[styles.container, { backgroundColor: isDarkMode ? "#121212" : "#fff" }]}>
+        <View style={styles.container}>
             <View style={styles.content}>
                 <Image source={require("../assets/img/kid.jpg")} style={styles.image} />
                 <Text style={styles.title}>StoryBook-RN</Text>
                 <Text style={styles.description}>
-                    Welcome to StoryBook - RN, an app where users can explore and read various stories.
-                    Enjoy a collection of interesting and captivating tales right at your fingertips.
+                    Welcome to StoryBook - RN, an app where users can explore and read
+                    various stories. Enjoy a collection of interesting and captivating
+                    tales right at your fingertips.
                 </Text>
 
                 <Pressable style={styles.button} onPress={handleLoginPress}>
@@ -40,7 +46,10 @@ const Home = () => {
                 </Pressable>
             </View>
             <View style={styles.tag}>
-                <Text style={{ fontWeight: "bold", marginBottom: 25 }}>
+                <Text style={{
+                    fontWeight: "bold",
+                    marginBottom: 25,
+                }}>
                     Developed by
                     <Text
                         style={{ color: "#3498db" }}
@@ -57,6 +66,14 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#fff",
+        justifyContent: "center",
+    },
+    box: {
+        // flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         justifyContent: "center",
     },
     content: {
@@ -76,10 +93,10 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: "#000",
         marginBottom: 10,
-        fontWeight: "500",
+        fontWeight: '500',
     },
     description: {
-        fontWeight: "400",
+        fontWeight: '400',
         fontSize: 16,
         color: "#000",
         textAlign: "center",
@@ -100,6 +117,7 @@ const styles = StyleSheet.create({
     },
     tag: {
         flex: 1,
+        // backgroundColor: "red",
         justifyContent: "flex-end",
         alignItems: "center",
     },
